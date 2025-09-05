@@ -3,7 +3,7 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  
+
   // Configure tool-specific properties
   "customizations": {
     "vscode": {
@@ -11,17 +11,17 @@
         // GitHub Copilot extensions
         "GitHub.copilot",
         "GitHub.copilot-chat",
-        
+
         // Claude extension (Note: actual extension name may vary)
         "Anthropic.claude-dev",
-        
+
         // Next.js and React development
         "esbenp.prettier-vscode",
-        
+
         // Additional helpful extensions for web development
         "ms-playwright.playwright"
       ],
-      
+
       "settings": {
         "typescript.preferences.quoteStyle": "single",
         "javascript.preferences.quoteStyle": "single",

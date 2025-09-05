@@ -5,11 +5,13 @@ This repository includes a devcontainer configuration optimized for Next.js web 
 ## What's Included
 
 ### Base Environment
+
 - **Node.js 20** with TypeScript support
 - **pnpm** for fast package management
 - **Git** with GitHub CLI
 
 ### VS Code Extensions
+
 - **GitHub Copilot** & **Copilot Chat** - AI pair programming
 - **Claude Dev** - Anthropic's AI coding assistant
 - **Next.js/React Tools** - Enhanced development experience
@@ -19,12 +21,14 @@ This repository includes a devcontainer configuration optimized for Next.js web 
 - **Path Intellisense** - Autocomplete for file paths
 
 ### CLI Tools
+
 - **Claude Code CLI** (`@anthropic-ai/claude-code`) - Anthropic's CLI tool
 - **Gemini CLI** (`@google/gemini-cli`) - Google's AI CLI tool
 - **Codex CLI** (`@openai/codex`) - OpenAI's coding assistant CLI
 - **GitHub CLI** with Copilot extensions
 
 ### Development Tools
+
 - **ESLint** with Next.js plugin
 - **Prettier** for code formatting
 - **TypeScript** compiler
@@ -33,12 +37,14 @@ This repository includes a devcontainer configuration optimized for Next.js web 
 ## Getting Started
 
 ### Using GitHub Codespaces
+
 1. Click the "Code" button in your repository
 2. Select "Codespaces" tab
 3. Click "Create codespace on main"
 4. Wait for the container to build and setup to complete
 
 ### Using VS Code Dev Containers
+
 1. Install the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 2. Open the repository in VS Code
 3. Press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux)
@@ -48,6 +54,7 @@ This repository includes a devcontainer configuration optimized for Next.js web 
 ## Port Forwarding
 
 The following ports are automatically forwarded:
+
 - **3000** - Next.js development server (default)
 - **3001** - Alternative development server
 - **8080** - Additional web server port
@@ -57,21 +64,25 @@ The following ports are automatically forwarded:
 After the container starts, you may need to authenticate with the AI services:
 
 ### GitHub Copilot
+
 Copilot should work automatically if you're signed into GitHub in VS Code.
 
 ### Claude CLI
+
 ```bash
 # Authentication may vary - check @anthropic-ai/claude-code documentation
 anthropic auth login
 ```
 
 ### Gemini CLI
+
 ```bash
 # Start Gemini CLI and follow OAuth flow
 gemini
 ```
 
 ### Codex CLI
+
 ```bash
 # Check @openai/codex documentation for authentication
 codex auth login
@@ -104,14 +115,17 @@ pnpm dev
 ## Troubleshooting
 
 ### Container won't start
+
 - Ensure Docker is running on your machine
 - Try rebuilding the container: `Dev Containers: Rebuild Container`
 
 ### Extensions not loading
+
 - Check the extension IDs in `devcontainer.json`
 - Some extensions may require manual installation or authentication
 
 ### CLI tools not working
+
 - Check if they were installed correctly: `which claude`, `which gemini`, etc.
 - Re-run the setup script: `bash .devcontainer/setup.sh`
 
