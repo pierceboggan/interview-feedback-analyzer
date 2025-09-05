@@ -1,0 +1,26 @@
+{
+  "typescript.preferences.quoteStyle": "single",
+  "javascript.preferences.quoteStyle": "single",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact"
+  },
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": false,
+    "plaintext": false
+  },
+  "workbench.colorTheme": "Default Dark+",
+  "editor.minimap.enabled": true,
+  "editor.wordWrap": "on",
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000
+}

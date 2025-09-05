@@ -1,0 +1,72 @@
+{
+  "name": "Next.js Development Environment",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  
+  // Configure tool-specific properties
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // GitHub Copilot extensions
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        
+        // Claude extension (Note: actual extension name may vary)
+        "Anthropic.claude-dev",
+        
+        // Next.js and React development
+        "esbenp.prettier-vscode",
+        
+        // Additional helpful extensions for web development
+        "ms-playwright.playwright"
+      ],
+      
+      "settings": {
+        "typescript.preferences.quoteStyle": "single",
+        "javascript.preferences.quoteStyle": "single",
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "explicit"
+        },
+        "emmet.includeLanguages": {
+          "javascript": "javascriptreact",
+          "typescript": "typescriptreact"
+        }
+      }
+    }
+  },
+
+  // Features to add to the dev container
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "nodeGypDependencies": true,
+      "version": "20"
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    }
+  },
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally
+  "forwardPorts": [3000, 3001, 8080],
+
+  // Use 'postCreateCommand' to run commands after the container is created
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+
+  // Configure tool-specific properties
+  "mounts": [
+    "source=${localEnv:HOME}/.gitconfig,target=/home/node/.gitconfig,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
+  ],
+
+  // Set the default user
+  "remoteUser": "node",
+
+  // Keep container running
+  "shutdownAction": "stopContainer"
+}
