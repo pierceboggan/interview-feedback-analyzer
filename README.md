@@ -24,6 +24,10 @@ Build a web application that can:
 
 ### 🛠️ Technology Stack
 
+**You're welcome to use any tools you prefer** - it doesn't have to be VS Code and Copilot! Feel free to use your own machine and development environment if you'd prefer.
+
+However, if you'd like to use the provided setup, we have this repository with starter code and a Codespace that includes a Copilot account for your convenience.
+
 You have full freedom to choose your tech stack, but we've provided a **Next.js starter project** in this repository with a pre-configured development environment if you'd like to use it.
 
 **Suggested Stack (Optional):**
@@ -32,6 +36,8 @@ You have full freedom to choose your tech stack, but we've provided a **Next.js 
 - **Styling**: Tailwind CSS
 
 ## 🚀 Quick Setup Instructions
+
+**📝 IMPORTANT NOTE:** Please complete the environment setup before your interview, but **do not start coding yet**. The coding portion will be done during the interview session.
 
 ### ⚡ Option 1: GitHub Codespaces (Recommended)
 
