@@ -13,7 +13,7 @@
         "GitHub.copilot-chat",
 
         // Claude extension (Note: actual extension name may vary)
-        "Anthropic.claude-dev",
+        "anthropic.claude-code",
 
         // Next.js and React development
         "esbenp.prettier-vscode",
