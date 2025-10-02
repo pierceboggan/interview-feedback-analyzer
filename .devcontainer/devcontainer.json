@@ -12,11 +12,18 @@
         "GitHub.copilot",
         "GitHub.copilot-chat",
 
-        // Claude extension (Note: actual extension name may vary)
+        // Claude extension for AI assistance
         "anthropic.claude-code",
 
         // Next.js and React development
         "esbenp.prettier-vscode",
+
+        // Tailwind CSS support
+        "bradlc.vscode-tailwindcss",
+
+        // Helpful HTML/JSX utilities
+        "formulahendry.auto-rename-tag",
+        "christian-kohler.path-intellisense",
 
         // Additional helpful extensions for web development
         "ms-playwright.playwright"
@@ -57,12 +64,6 @@
 
   // Use 'postCreateCommand' to run commands after the container is created
   "postCreateCommand": "bash .devcontainer/setup.sh",
-
-  // Configure tool-specific properties
-  "mounts": [
-    "source=${localEnv:HOME}/.gitconfig,target=/home/node/.gitconfig,type=bind,consistency=cached",
-    "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
-  ],
 
   // Set the default user
   "remoteUser": "node",

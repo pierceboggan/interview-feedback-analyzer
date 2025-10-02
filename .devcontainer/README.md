@@ -13,18 +13,18 @@ This repository includes a devcontainer configuration optimized for Next.js web 
 ### VS Code Extensions
 
 - **GitHub Copilot** & **Copilot Chat** - AI pair programming
-- **Claude Dev** - Anthropic's AI coding assistant
+- **Claude Code** (`anthropic.claude-code`) - Anthropic's AI coding assistant
 - **Next.js/React Tools** - Enhanced development experience
 - **ESLint & Prettier** - Code formatting and linting
-- **Tailwind CSS** - Utility-first CSS framework support
+- **Tailwind CSS IntelliSense** - Utility-first CSS framework support
 - **Auto Rename Tag** - Automatically rename paired HTML/JSX tags
 - **Path Intellisense** - Autocomplete for file paths
 
 ### CLI Tools
 
 - **Claude Code CLI** (`@anthropic-ai/claude-code`) - Anthropic's CLI tool
-- **Gemini CLI** (`@google/gemini-cli`) - Google's AI CLI tool
-- **Codex CLI** (`@openai/codex`) - OpenAI's coding assistant CLI
+- **Gemini CLI** (`@google/gemini-cli`) - Google's AI CLI tool *(installed when published)*
+- **Codex CLI** (`@openai/codex`) - OpenAI's coding assistant CLI *(installed when published)*
 - **GitHub CLI** with Copilot extensions
 
 ### Development Tools
@@ -128,6 +128,11 @@ pnpm dev
 
 - Check if they were installed correctly: `which claude`, `which gemini`, etc.
 - Re-run the setup script: `bash .devcontainer/setup.sh`
+
+### Using SSH keys
+
+- By default, the container relies on the forwarded SSH agent from VS Code/Codespaces.
+- If you need to mount local SSH keys, create a `.devcontainer/devcontainer.local.json` with a `mounts` entry tailored to your host platform (for example, `${localEnv:USERPROFILE}` on Windows).
 
 ## Performance Tips
 

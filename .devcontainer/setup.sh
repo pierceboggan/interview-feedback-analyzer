@@ -59,4 +59,24 @@ echo "  - GitHub Copilot Chat"
 echo "  - Claude Code"
 echo "  - Next.js and React development tools"
 echo ""
+echo "Installing workspace application dependencies (feedback-tracker)..."
+# Install project dependencies inside the feedback-tracker subdirectory if present
+PROJECT_DIR="/workspaces/interview-feedback-analyzer/feedback-tracker"
+if [ -d "$PROJECT_DIR" ] && [ -f "$PROJECT_DIR/package.json" ]; then
+	pushd "$PROJECT_DIR" >/dev/null
+	if command -v pnpm >/dev/null 2>&1 && [ -f pnpm-lock.yaml ]; then
+		echo "Detected pnpm lockfile; running pnpm install"
+		pnpm install
+	elif [ -f package-lock.json ]; then
+		echo "Detected npm lockfile; running npm ci"
+		npm ci || npm install
+	else
+		echo "No lockfile detected; running npm install"
+		npm install
+	fi
+	popd >/dev/null
+else
+	echo "feedback-tracker project directory not found or missing package.json; skipping app dependency install"
+fi
+
 echo "Ready for Next.js development! 🚀"
