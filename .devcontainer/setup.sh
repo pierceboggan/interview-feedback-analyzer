@@ -1,46 +1,52 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Setup script for devcontainer
+set -euo pipefail
+
 echo "Setting up development environment..."
 
-# Update package lists
 sudo apt-get update
+sudo apt-get install -y --no-install-recommends curl wget git build-essential
 
-# Install additional system dependencies
-sudo apt-get install -y curl wget git build-essential
+# Keep global JavaScript tooling in sync across local Dev Containers and Codespaces
+npm install -g pnpm @next/eslint-plugin-next eslint prettier typescript @types/node create-next-app
 
-# Install pnpm (faster package manager for Node.js)
-npm install -g pnpm
+maybe_install_cli() {
+	local package="$1"
+	local display_name="$2"
 
-# Install global development tools
-npm install -g @next/eslint-plugin-next
-npm install -g eslint
-npm install -g prettier
-npm install -g typescript
-npm install -g @types/node
+	if npm view "$package" >/dev/null 2>&1; then
+		echo "Installing $display_name..."
+		npm install -g "$package"
+	else
+		echo "Skipping $display_name (package not available)."
+	fi
+}
 
-# Install Claude CLI (Anthropic's CLI tool)
-echo "Installing Claude CLI..."
-npm install -g @anthropic-ai/claude-code
+maybe_install_cli "@anthropic-ai/claude-code" "Claude CLI"
+maybe_install_cli "@google/gemini-cli" "Gemini CLI"
+maybe_install_cli "@openai/codex" "Codex CLI"
 
-# Install Gemini CLI (Google's CLI tool)
-echo "Installing Gemini CLI..."
-npm install -g @google/gemini-cli
-
-# Install Codex CLI (OpenAI's CLI tool) 
-echo "Installing Codex CLI..."
-npm install -g @openai/codex
-
-# Set up git configuration for the container
 git config --global init.defaultBranch main
 git config --global core.autocrlf input
 git config --global pull.rebase false
 
-# Create common project directories
 mkdir -p ~/workspace/projects
 
-# Install Next.js CLI globally
-npm install -g create-next-app
+PROJECT_DIR="/workspaces/interview-feedback-analyzer/feedback-tracker"
+if [ -d "$PROJECT_DIR" ] && [ -f "$PROJECT_DIR/package.json" ]; then
+	echo "Installing workspace application dependencies (feedback-tracker)..."
+	pushd "$PROJECT_DIR" >/dev/null
+	if command -v pnpm >/dev/null 2>&1 && [ -f pnpm-lock.yaml ]; then
+		pnpm install
+	elif [ -f package-lock.json ]; then
+		npm ci || npm install
+	else
+		npm install
+	fi
+	popd >/dev/null
+else
+	echo "feedback-tracker project directory not found or missing package.json; skipping app dependency install"
+fi
 
 echo "Development environment setup complete!"
 echo "Available tools:"
@@ -49,34 +55,10 @@ echo "  - npm $(npm --version)"
 echo "  - pnpm $(pnpm --version)"
 echo "  - Next.js CLI"
 echo "  - GitHub CLI with Copilot extension"
+echo ""
+echo "Optional AI CLIs (installed when available):"
 echo "  - Claude Code CLI (@anthropic-ai/claude-code)"
-echo "  - Gemini CLI (@google/gemini-cli)" 
+echo "  - Gemini CLI (@google/gemini-cli)"
 echo "  - Codex CLI (@openai/codex)"
 echo ""
-echo "VS Code extensions installed:"
-echo "  - GitHub Copilot"
-echo "  - GitHub Copilot Chat"
-echo "  - Claude Code"
-echo "  - Next.js and React development tools"
-echo ""
-echo "Installing workspace application dependencies (feedback-tracker)..."
-# Install project dependencies inside the feedback-tracker subdirectory if present
-PROJECT_DIR="/workspaces/interview-feedback-analyzer/feedback-tracker"
-if [ -d "$PROJECT_DIR" ] && [ -f "$PROJECT_DIR/package.json" ]; then
-	pushd "$PROJECT_DIR" >/dev/null
-	if command -v pnpm >/dev/null 2>&1 && [ -f pnpm-lock.yaml ]; then
-		echo "Detected pnpm lockfile; running pnpm install"
-		pnpm install
-	elif [ -f package-lock.json ]; then
-		echo "Detected npm lockfile; running npm ci"
-		npm ci || npm install
-	else
-		echo "No lockfile detected; running npm install"
-		npm install
-	fi
-	popd >/dev/null
-else
-	echo "feedback-tracker project directory not found or missing package.json; skipping app dependency install"
-fi
-
 echo "Ready for Next.js development! 🚀"

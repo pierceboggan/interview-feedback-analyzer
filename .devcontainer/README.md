@@ -137,5 +137,5 @@ pnpm dev
 ## Performance Tips
 
 - Use `pnpm` instead of `npm` for faster package installation
-- The container includes volume mounts for Git configuration and SSH keys
+- Configure additional mounts in `.devcontainer/devcontainer.local.json` if you need direct access to host files
 - Consider using the GitHub CLI for repository operations
